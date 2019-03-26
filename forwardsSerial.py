@@ -1,101 +1,151 @@
 import serial
 import time
-##Python class(float x)
+#Motor movement Class
 class motors:
-	#def __init__(self):
-		#self.Move = Move	
+		
+	#Moves the psi swarm forwards
 	def forward(self, Move):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		#Set the serial connection
+		com = serialConnect()
+		#Write the speed of the motor and send it to the mbed
 		Uinput = "forward" + str(Move)
 		com.write(Uinput)
+		#Close the serial connection
 		com.close()
-		
+	
+	#Moves the psi swarm backwards	
 	def backward(self, Move):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		#Set the serial connection
+		com = serialConnect()
+		#Write the speed of the motor going backwards and send it to the mbed
 		Uinput = "backward" + str(Move)
 		com.write(Uinput)
+		#Close the serial connection
 		com.close()
-		
+	
+	#Stops the wheels of psi swarm	
 	def brake(self):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		#Set the serial connection
+		com = serialConnect()
+		#Send brake to the mbed
 		Uinput = "brake"
 		com.write(Uinput)
+		#Close the serial connection
 		com.close()
-		
+	
+	
+	#Stops the psi swarm	
 	def stop(self):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		#Set the serial connection
+		com = serialConnect()
+		#Send stop to the mbed
 		Uinput = "stop"
 		com.write(Uinput)
+		#Close the serial connection
 		com.close()
 		
+	#Stops the left motor
 	def brake_left_motor(self):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		#Set the serial connection
+		com = serialConnect()
+		#Send brakeleft to the mbed
 		Uinput = "brakeleft"
 		com.write(Uinput)
+		#Close the serial connection
 		com.close()
 		
+	#Stops the right motor
 	def brake_right_motor(self):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		#Set the serial connection
+		com = serialConnect()
+		#Send brakeright to the mbed
 		Uinput = "brakeright"
 		com.write(Uinput)
+		#Close the serial connection
 		com.close()
 		
+	#Sets the left motor's speed
 	def set_left_motor_speed(self, Move):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		#Set the serial connection
+		com = serialConnect()
+		#Send leftmotor and movement speed to the mbed
 		Uinput = "leftmotor" + str(Move)
 		com.write(Uinput)
+		#Close the serial connection
 		com.close()
 		
+	#Sets the right motor's speed
 	def set_right_motor_speed(self, Move):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		#Set the serial connection
+		com = serialConnect()
+		#Send rightmotor and movement speed to the mbed
 		Uinput = "rightmotor" + str(Move)
 		com.write(Uinput)
+		#Close the serial connection
 		com.close()
 
+#Animations class
 class animations:
 		
+	#Activates the vibrate command
 	def vibrate(self):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		#Set the serial connection
+		com = serialConnect()
+		#Send vibrate to the mbed
 		Uinput = "vibrate"
 		com.write(Uinput)
+		#Close the serial connection
 		com.close()
 		
+	#Activates led run
 	def led_run1(self):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		#Set the serial connection
+		com = serialConnect()
+		#Send ledrun1 to the mbed
 		Uinput = "ledrun1"
 		com.write(Uinput)
+		#Close the serial connection
 		com.close()
 		
+	#Sets the colour of the leds
 	def set_colour(self, numColour):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		#Set the serial connection
+		com = serialConnect()
+		#Sends setcolour plus the number repressenting the colour to the mbed
 		Uinput = "setcolour" + str(numColour)
 		com.write(Uinput)
+		#Close the serial connection
 		com.close()
 
 #tested down to here
 
+#colour class
 class colour:
 	
+	#Activates colour ticker
 	def start_colour_ticker(self, numTicker):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		#Set the serial connection
+		com = serialConnect()
+		#Sends startcrticker and the timer to the mbed
 		Uinput = "startcrticker" + str(numTicker)
 		com.write(Uinput)
+		#Close the serial connection
 		com.close()
 		
 	def stop_colour_ticker(self):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "stopcolourticker"
 		com.write(Uinput)
 		com.close()
 	
 	def detect_colour_once(self):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "detectcolouronce"
 		com.write(Uinput)
 		com.close()
 		
 	def get_colour_string(self):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "getcolourstring"
 		com.write(Uinput)
 		time.sleep(0.5)
@@ -104,7 +154,7 @@ class colour:
 		return output
 		
 	def read_base_colour_sensor_values(self):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "readbasecolour"
 		com.write(Uinput)
 		time.sleep(0.5)
@@ -115,19 +165,19 @@ class colour:
 class display:
 	
 	def clear_display(self):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "cleardisplay"
 		com.write(Uinput)
 		com.close()
 		
 	def home(self):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "home"
 		com.write(Uinput)
 		com.close()
 		
 	def write_string(self, Text):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "writestring" + str(Text)
 		com.write(Uinput)
 		com.close()
@@ -136,55 +186,55 @@ class display:
 class led:
 	
 	def set_leds(self, grnValue, redValue):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "setleds" + str(grnValues) + str(redValues)
 		com.write(Uinput)
 		com.close()
 		
 	def set_green_leds(self,grnValue):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "setgreenleds" + str(grnValue)
 		com.write(Uinput)
 		com.close()
 		
 	def set_red_leds(self,redValue):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "setgreenleds" + str(redValue)
 		com.write(Uinput)
 		com.close()
 		
 	def set_led(self, ledNum, colourValue):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "setled" + str(ledNum) + str(colourValue)
 		com.write(Uinput)
 		com.close()
 		
 	def set_base_led(self, state):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "setbaseled" + str(state)
 		com.write(Uinput)
 		com.close()
 		
 	def blink_leds(self, ledValue):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "blinkleds" + str(ledValue)
 		com.write(Uinput)
 		com.close()
 		
 	def set_center_led(self, state):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "setcenterled" + str(state)
 		com.write(Uinput)
 		com.close()
 		
 	def set_center_led_brightness(self, light):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "setCledB" + str(light)
 		com.write(Uinput)
 		com.close()
 		
 	def get_led_states(self):
-		com = serial.Serial('/dev/ttyACM1',baudrate=9600)
+		com = serialConnect()
 		Uinput = "getledstate" #still to test
 		com.write(Uinput)
 		time.sleep(0.5)
@@ -203,7 +253,7 @@ class led:
 class sensors:
 
 	def get_dc_voltage(self):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "getbattvolt"
 		com.write(Uinput)
 		time.sleep(0.5)
@@ -212,7 +262,7 @@ class sensors:
 		return output
 		
 	def get_current(self):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "getcurr"
 		com.write(Uinput)
 		time.sleep(0.5)
@@ -221,7 +271,7 @@ class sensors:
 		return output
 		
 	def get_temperature(self):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "gettemp"
 		com.write(Uinput)
 		time.sleep(0.5)
@@ -230,7 +280,7 @@ class sensors:
 		return output
 		
 	def get_battery_voltage(self):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "getdcvolt"
 		com.write(Uinput)
 		time.sleep(0.5)
@@ -239,7 +289,7 @@ class sensors:
 		return output
 		
 	def enable_ultrasonic_ticker(self):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "enablesonicticker"
 		com.write(Uinput)
 		time.sleep(0.5)
@@ -248,7 +298,7 @@ class sensors:
 		return output
 		
 	def disable_ultrasonic_ticker(self):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "disablesonicticker"
 		com.write(Uinput)
 		time.sleep(0.5)
@@ -257,7 +307,7 @@ class sensors:
 		return output
 		
 	def update_ultrasonic_measure(self):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "updatesonicmeasure"
 		com.write(Uinput)
 		time.sleep(0.5)
@@ -266,7 +316,7 @@ class sensors:
 		return output
 		
 	def store_background_raw_ir_values(self):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "storebgrawir"
 		com.write(Uinput)
 		time.sleep(0.5)
@@ -274,8 +324,8 @@ class sensors:
 		com.close()
 		return output
 		
-	def store_background_raw_ir_values(self): #Mistake on the mbed
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+	def store_illumnated_raw_ir_values(self):
+		com = serialConnect()
 		Uinput = "storeillumrawir"
 		com.write(Uinput)
 		time.sleep(0.5)
@@ -284,7 +334,7 @@ class sensors:
 		return output
 		
 	def store_ir_values(self):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "storeirvalues"
 		com.write(Uinput)
 		time.sleep(0.5)
@@ -293,7 +343,7 @@ class sensors:
 		return output
 		
 	def get_background_raw_ir_value(self, settingValue):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "getbgrawir" + str(settingValue)
 		com.write(Uinput)
 		time.sleep(0.5)
@@ -302,7 +352,7 @@ class sensors:
 		return output
 		
 	def get_illuminated_raw_ir_value(self, settingValue):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "getillumrawir" + str(settingValue)
 		com.write(Uinput)
 		time.sleep(0.5)
@@ -311,7 +361,7 @@ class sensors:
 		return output
 		
 	def calculate_side_ir_value(self, settingValue):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "calculatesideir" + str(settingValue)
 		com.write(Uinput)
 		time.sleep(0.5)
@@ -320,7 +370,7 @@ class sensors:
 		return output
 		
 	def read_illuminated_raw_ir_value(self, settingValue):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "readillumrawir" + str(settingValue)
 		com.write(Uinput)
 		time.sleep(0.5)
@@ -329,7 +379,7 @@ class sensors:
 		return output
 		
 	def store_illumnated_base_ir_values(self):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "storeillumbaseir"
 		com.write(Uinput)
 		time.sleep(0.5)
@@ -338,7 +388,7 @@ class sensors:
 		return output
 		
 	def store_base_ir_values(self):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "storebaseir"
 		com.write(Uinput)
 		time.sleep(0.5)
@@ -347,7 +397,7 @@ class sensors:
 		return output
 		
 	def get_background_base_ir_value(self, settingValue):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "getbgbaseir" + str(settingValue)
 		com.write(Uinput)
 		time.sleep(0.5)
@@ -356,7 +406,7 @@ class sensors:
 		return output
 		
 	def get_illuminated_base_ir_value(self, settingValue):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "getillumbaseir" + str(settingValue)
 		com.write(Uinput)
 		time.sleep(0.5)
@@ -365,19 +415,23 @@ class sensors:
 		return output
 		
 	def calculate_base_ir_value(self, settingValue):
-		com = serial.Serial('/dev/ttyACM0',baudrate=9600)
+		com = serialConnect()
 		Uinput = "calculatebaseir" + str(settingValue)
 		com.write(Uinput)
 		time.sleep(0.5)
 		output = com.readline()
 		com.close()
 		return output
+		
+# Connect the serial device
+def serialConnect():
+	return serial.Serial('/dev/ttyACM0',baudrate=9600)
 
 
 
 #Testing area
 
-#moveClass = motors()
+moveClass = motors()
 #moveClass.forward(0.5)
 #time.sleep(2)
 #moveClass.backward(0.8)
@@ -391,14 +445,14 @@ class sensors:
 #moveClass.stop()
 
 animClass= animations()
-#animClass.vibrate()
+animClass.vibrate()
 #time.sleep(1)
 #animClass.set_colour(2) #don't know if it works
 #time.sleep(2)
 #animClass.led_run1()
 #time.sleep(3)
 
-coloClass = colour()
+#coloClass = colour()
 #coloClass.start_colour_ticker(500) #No visible difference but probably works
 #time.sleep(2)
 #coloClass.stop_colour_ticker() #No visible difference but probably works
@@ -406,5 +460,5 @@ coloClass = colour()
 #print(coloClass.get_colour_string()) #Doesn't give a result for some reason
 
 
-sensClass = sensors()
-print(sensClass.get_dc_voltage()) #Does give a result
+#sensClass = sensors()
+#print(sensClass.get_dc_voltage()) #Does give a result
