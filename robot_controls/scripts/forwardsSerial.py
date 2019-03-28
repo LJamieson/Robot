@@ -187,7 +187,7 @@ class led:
 	
 	def set_leds(self, grnValue, redValue):
 		com = serialConnect()
-		Uinput = "setleds" + str(grnValues) + str(redValues)
+		Uinput = "setleds" + str(grnValue) + str(redValue)
 		com.write(Uinput)
 		com.close()
 		
@@ -199,7 +199,7 @@ class led:
 		
 	def set_red_leds(self,redValue):
 		com = serialConnect()
-		Uinput = "setgreenleds" + str(redValue)
+		Uinput = "setredleds" + str(redValue)
 		com.write(Uinput)
 		com.close()
 		
@@ -425,13 +425,13 @@ class sensors:
 		
 # Connect the serial device
 def serialConnect():
-	return serial.Serial('/dev/ttyACM0',baudrate=9600)
+	return serial.Serial('/dev/ttyACM0',baudrate=115200)
 
 
 
 #Testing area
 
-moveClass = motors()
+#moveClass = motors()
 #moveClass.forward(0.5)
 #time.sleep(2)
 #moveClass.backward(0.8)
@@ -444,8 +444,8 @@ moveClass = motors()
 #time.sleep(3)
 #moveClass.stop()
 
-animClass= animations()
-animClass.vibrate()
+#animClass= animations()
+#animClass.vibrate()
 #time.sleep(1)
 #animClass.set_colour(2) #don't know if it works
 #time.sleep(2)
