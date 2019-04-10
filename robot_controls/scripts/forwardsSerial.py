@@ -12,6 +12,7 @@ class motors:
 		com.write(Uinput)
 		#Close the serial connection
 		com.close()
+		
 	
 	#Moves the psi swarm backwards	
 	def backward(self, Move):
@@ -303,24 +304,16 @@ class led:
 		#Set the serial connection
 		com = serialConnect()
 		#Sends getledstate and the light value to the mbed
-		Uinput = "getledstate" #still to test
+		Uinput = "getledstate"
 		com.write(Uinput)
 		#Gives a time brake so that the mbed can process
 		time.sleep(0.5)
-		#While it has not broken
-		while True:
-			#Read the output
-			output = com.readline()
-			#If not the end of the line
-			if not com.strip():
-				#Add the out put to a series of previous outputs
-				outputComplete= outputComplete + output
-			else:
-				break
-		
-		#Close the serial connection
+		#Reads output from mbed
+		output = com.readline()
+		#Close the output
 		com.close()
-		return outputComplete
+		return output
+		
 	
 #Sensors class	
 class sensors:
@@ -395,10 +388,10 @@ class sensors:
 		#Gives a time brake so that the mbed can process
 		time.sleep(0.5)
 		#Reads output from mbed
-		output = com.readline()
+		#output = com.readline()
 		#Close the output
 		com.close()
-		return output
+		#return output
 		
 	#Disables the ultrasonic ticker
 	def disable_ultrasonic_ticker(self):
@@ -410,10 +403,10 @@ class sensors:
 		#Gives a time brake so that the mbed can process
 		time.sleep(0.5)
 		#Reads output from mbed
-		output = com.readline()
+		#output = com.readline()
 		#Close the output
 		com.close()
-		return output
+		#return output
 		
 	#Updates the ultrasonic measurement and returns it
 	def update_ultrasonic_measure(self):
@@ -425,10 +418,10 @@ class sensors:
 		#Gives a time brake so that the mbed can process
 		time.sleep(0.5)
 		#Reads output from mbed
-		output = com.readline()
+		#output = com.readline()
 		#Close the output
 		com.close()
-		return output
+		#return output
 		
 	#Stores backgroung raw ir values
 	def store_background_raw_ir_values(self):
@@ -440,10 +433,10 @@ class sensors:
 		#Gives a time brake so that the mbed can process
 		time.sleep(0.5)
 		#Reads output from mbed
-		output = com.readline()
+		#output = com.readline()
 		#Close the output
 		com.close()
-		return output
+		#return output
 	
 	#Stores illumnated raw ir values	
 	def store_illumnated_raw_ir_values(self):
@@ -455,10 +448,10 @@ class sensors:
 		#Gives a time brake so that the mbed can process
 		time.sleep(0.5)
 		#Reads output from mbed
-		output = com.readline()
+		#output = com.readline()
 		#Close the output
 		com.close()
-		return output
+		#return output
 		
 	#Stores the ir values
 	def store_ir_values(self):
@@ -470,10 +463,10 @@ class sensors:
 		#Gives a time brake so that the mbed can process
 		time.sleep(0.5)
 		#Reads output from mbed
-		output = com.readline()
+		#output = com.readline()
 		#Close the output
 		com.close()
-		return output
+		#return output
 		
 	#Get background raw ir values
 	def get_background_raw_ir_value(self, settingValue):
@@ -535,6 +528,19 @@ class sensors:
 		com.close()
 		return output
 		
+		
+	#Stores background base ir values
+	def store_background_base_ir_values(self):
+		#Set the serial connection
+		com = serialConnect()
+		#Sends storebgbaseir to the mbed
+		Uinput = "storebgbaseir"
+		com.write(Uinput)
+		#Gives a time brake so that the mbed can process
+		time.sleep(0.5)
+		#Close the output
+		com.close()
+		
 	#Stores illumnated base ir values
 	def store_illumnated_base_ir_values(self):
 		#Set the serial connection
@@ -560,10 +566,10 @@ class sensors:
 		#Gives a time brake so that the mbed can process
 		time.sleep(0.5)
 		#Reads output from mbed
-		output = com.readline()
+		#output = com.readline()
 		#Close the output
 		com.close()
-		return output
+		#return output
 		
 	#Gets background base ir value
 	def get_background_base_ir_value(self, settingValue):
@@ -609,6 +615,7 @@ class sensors:
 		#Close the output
 		com.close()
 		return output
+		
 		
 # Connect the serial device
 def serialConnect():
