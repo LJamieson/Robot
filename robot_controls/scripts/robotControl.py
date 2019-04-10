@@ -9,10 +9,11 @@ def talker():
     pub = rospy.Publisher('chatter', String, queue_size=10)
     rospy.init_node('talker', anonymous=True)
     sensorClass=forwardsSerial.sensors()
-    animClass=forwardsSerial.animations();
-    colourClass=forwardsSerial.colour();
-    ledClass=forwardsSerial.led();
+    animClass=forwardsSerial.animations()
+    colourClass=forwardsSerial.colour()
+    ledClass=forwardsSerial.led()
     moveClass=forwardsSerial.motors()
+    displayClass = forwardsSerial.display()
     #moveClass.set_right_motor_speed(1)
     #moveClass.forward(0.5)
     #time.sleep(1)
@@ -55,7 +56,7 @@ def talker():
     sensorClass.get_background_raw_ir_value(0)
     time.sleep(0.15)
     sensorClass.get_illuminated_raw_ir_value(0)
-    #sensorValues = sensorValues + "IR from sensor 0: %s" % sensorClass.calculate_side_ir_value(0)
+    sensorValues = sensorValues + "IR from sensor 0: %s" % sensorClass.calculate_side_ir_value(0)
     time.sleep(0.15)
     sensorClass.disable_ultrasonic_ticker()
     
@@ -63,14 +64,15 @@ def talker():
     #time.sleep(1)
     #moveClass.brake_right_motor()
     #time.sleep(1)
-    
-    #sensorClass.enable_ultrasonic_ticker()
-    #sensor.get_background_raw_ir_value(0)
-    #sensor.get_illuminated_raw_ir_value(0)
-    #% sensorClass.calculate_side_ir_value(0)
-    
+    time.sleep(0.15)
+    displayClass.write_string("Hello")
+    time.sleep(1)
+    displayClass.clear_display()
+    time.sleep(0.15)
     #colourClass.start_colour_ticker(10)
+    time.sleep(0.15)
     #colourClass.stop_colour_ticker()
+    time.sleep(0.15)
     #moveClass.forward(0.5)
     #time.sleep(1)
     #moveClass.stop()
