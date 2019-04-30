@@ -359,6 +359,8 @@ class sensors:
 		time.sleep(0.5)
 		#Reads output from mbed
 		output = com.readline()
+		time.sleep(0.5)
+		output = output + com.readline()
 		#Close the output
 		com.close()
 		return output
@@ -387,11 +389,8 @@ class sensors:
 		com.write(Uinput)
 		#Gives a time brake so that the mbed can process
 		time.sleep(0.5)
-		#Reads output from mbed
-		#output = com.readline()
 		#Close the output
 		com.close()
-		#return output
 		
 	#Disables the ultrasonic ticker
 	def disable_ultrasonic_ticker(self):
@@ -402,11 +401,9 @@ class sensors:
 		com.write(Uinput)
 		#Gives a time brake so that the mbed can process
 		time.sleep(0.5)
-		#Reads output from mbed
-		#output = com.readline()
 		#Close the output
 		com.close()
-		#return output
+		
 		
 	#Updates the ultrasonic measurement and returns it
 	def update_ultrasonic_measure(self):
@@ -417,11 +414,9 @@ class sensors:
 		com.write(Uinput)
 		#Gives a time brake so that the mbed can process
 		time.sleep(0.5)
-		#Reads output from mbed
-		#output = com.readline()
 		#Close the output
 		com.close()
-		#return output
+		
 		
 	#Stores backgroung raw ir values
 	def store_background_raw_ir_values(self):
@@ -432,11 +427,8 @@ class sensors:
 		com.write(Uinput)
 		#Gives a time brake so that the mbed can process
 		time.sleep(0.5)
-		#Reads output from mbed
-		#output = com.readline()
 		#Close the output
 		com.close()
-		#return output
 	
 	#Stores illumnated raw ir values	
 	def store_illumnated_raw_ir_values(self):
@@ -447,11 +439,8 @@ class sensors:
 		com.write(Uinput)
 		#Gives a time brake so that the mbed can process
 		time.sleep(0.5)
-		#Reads output from mbed
-		#output = com.readline()
 		#Close the output
 		com.close()
-		#return output
 		
 	#Stores the ir values
 	def store_ir_values(self):
@@ -462,11 +451,8 @@ class sensors:
 		com.write(Uinput)
 		#Gives a time brake so that the mbed can process
 		time.sleep(0.5)
-		#Reads output from mbed
-		#output = com.readline()
 		#Close the output
 		com.close()
-		#return output
 		
 	#Get background raw ir values
 	def get_background_raw_ir_value(self, settingValue):
@@ -565,11 +551,8 @@ class sensors:
 		com.write(Uinput)
 		#Gives a time brake so that the mbed can process
 		time.sleep(0.5)
-		#Reads output from mbed
-		#output = com.readline()
 		#Close the output
 		com.close()
-		#return output
 		
 	#Gets background base ir value
 	def get_background_base_ir_value(self, settingValue):
